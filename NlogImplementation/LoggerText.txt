@@ -1,0 +1,12 @@
+﻿2023-12-02 03:34:37.6361|DEBUG|NlogImplementation.NlogOperation|Got User Details
+2023-12-02 03:34:37.7213|INFO|NlogImplementation.NlogOperation|User Logged In Successfully
+2023-12-02 03:35:03.1068|DEBUG|NlogImplementation.NlogOperation|Got all Books
+2023-12-02 03:35:03.1068|INFO|NlogImplementation.NlogOperation|All Books Found
+2023-12-02 03:35:12.1548|DEBUG|NlogImplementation.NlogOperation|Got all in Cart
+2023-12-02 03:35:12.1548|INFO|NlogImplementation.NlogOperation|All Carts Found
+2023-12-02 03:35:19.8487|DEBUG|NlogImplementation.NlogOperation|Got all Customer Details
+2023-12-02 03:35:19.8487|INFO|NlogImplementation.NlogOperation|All Address Found
+2023-12-02 03:35:24.8766|DEBUG|NlogImplementation.NlogOperation|Got all Books
+2023-12-02 03:35:24.8766|INFO|NlogImplementation.NlogOperation|All Feedbacks Found
+2023-12-02 03:35:37.9001|DEBUG|NlogImplementation.NlogOperation|Got all in Wishlist
+2023-12-02 03:35:37.9001|INFO|NlogImplementation.NlogOperation|All Wishlists Found
