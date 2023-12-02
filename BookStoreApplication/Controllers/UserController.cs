@@ -23,7 +23,7 @@ namespace BookStoreApplication.Controllers
         NlogOperation nlog = new NlogOperation();
 
         [HttpPost]
-        [Route("UserRegistration")]
+        [Route("Registration")]
         public async Task<ActionResult> UserRegistration(UserRegister userRegister)
         {
             try
@@ -42,7 +42,7 @@ namespace BookStoreApplication.Controllers
             }
         }
         [HttpPost]
-        [Route("UserLogin")]
+        [Route("Login")]
         public ActionResult UserLogin(string email, string password)
         {
             try

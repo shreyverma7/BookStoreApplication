@@ -20,7 +20,7 @@ namespace BookStoreApplication.Controllers
         NlogOperation nlog = new NlogOperation();
 
         [HttpPost]
-        [Route("AddCart")]
+        [Route("AddtoCart")]
         public ActionResult AddCart(Carts cart)
         {
             try
@@ -40,14 +40,14 @@ namespace BookStoreApplication.Controllers
                 return this.NotFound(new { StatusCode = this.BadRequest(), Status = false, Message = ex.Message });
             }
         }
-        [HttpPut]
-        [Route("DeleteCart")]
+        [HttpDelete]
+        [Route("DeletefromCart")]
         public ActionResult DeleteCart(int BookId)
         {
             try
             {
                 int userid = Convert.ToInt32(User.Claims.FirstOrDefault(v => v.Type == "Id").Value);
-                var result = this.cartBusiness.DeleteCart(BookId, this.userid);
+                bool result = this.cartBusiness.DeleteCart( userid, BookId);
                 if (result)
                 {
                     nlog.LogInfo("Cart Deleted Successfully");

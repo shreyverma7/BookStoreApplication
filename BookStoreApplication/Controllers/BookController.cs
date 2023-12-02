@@ -22,7 +22,7 @@ namespace BookStoreApplication.Controllers
         NlogOperation nlog = new NlogOperation();
 
         [HttpPost]
-        [Route("AddBook")]
+        [Route("AddingBook")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddBook(Books book)
         {
@@ -34,7 +34,7 @@ namespace BookStoreApplication.Controllers
                     nlog.LogInfo("Book Added Successfully");
                     return this.Ok(new { Status = true, Message = "Book Added Successfully", Data = book });
                 }
-                return this.BadRequest(new { Status = false, Message = "Adding Book Unsuccessful", Data = String.Empty });
+                return this.BadRequest(new { Status = false, Message = "Book Added Unsuccessful", Data = String.Empty });
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace BookStoreApplication.Controllers
             }
         }
         [HttpPut]
-        [Route("UpdateBook")]
+        [Route("UpdateABook")]
         [Authorize(Roles = "Admin")]
         public ActionResult UpdateBook(Books book)
         {
@@ -73,7 +73,7 @@ namespace BookStoreApplication.Controllers
                     nlog.LogInfo("Book Updated Successfully");
                     return this.Ok(new { Status = true, Message = "Book Updated Successfully", Data = book });
                 }
-                return this.BadRequest(new { Status = false, Message = "Updating Book Unsuccessful" });
+                return this.BadRequest(new { Status = false, Message = "Book Updated Unsuccessful" });
             }
             catch (Exception ex)
             {
@@ -81,7 +81,7 @@ namespace BookStoreApplication.Controllers
             }
         }
         [HttpPut]
-        [Route("DeleteBook")]
+        [Route("DeleteABook")]
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteBook(int BookId)
         {
@@ -93,7 +93,7 @@ namespace BookStoreApplication.Controllers
                     nlog.LogInfo("Book Deleted Successfully");
                     return this.Ok(new { Status = true, Message = "Book Deleted Successfully" });
                 }
-                return this.BadRequest(new { Status = false, Message = "Deleting Book Unsuccessful" });
+                return this.BadRequest(new { Status = false, Message = "Book Deleted Unsuccessful" });
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace BookStoreApplication.Controllers
                     nlog.LogInfo("Book by Id Found");
                     return this.Ok(new { Status = true, Message = "Book by Id Found", data = result });
                 }
-                return this.BadRequest(new { Status = false, Message = "No Book Found" });
+                return this.BadRequest(new { Status = false, Message = "No Book Found by id" });
             }
             catch (Exception ex)
             {

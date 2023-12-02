@@ -20,7 +20,7 @@ namespace BookStoreApplication.Controllers
         NlogOperation nlog = new NlogOperation();
 
         [HttpPost]
-        [Route("AddAddress")]
+        [Route("AddCustomerDetails")]
         public ActionResult AddAddress(CustomerDetails customerDetails)
         {
             try
@@ -40,14 +40,14 @@ namespace BookStoreApplication.Controllers
                 return this.NotFound(new { StatusCode = this.BadRequest(), Status = false, Message = ex.Message });
             }
         }
-        [HttpPut]
-        [Route("DeleteAddress")]
+        [HttpDelete]
+        [Route("DeleteCustomerDetails")]
         public ActionResult DeleteAddress(int CustomerId)
         {
             try
             {
                 int userid = Convert.ToInt32(User.Claims.FirstOrDefault(v => v.Type == "Id").Value);
-                var result = this.customerDetailBusiness.DeleteAddress(CustomerId, this.userid);
+                var result = this.customerDetailBusiness.DeleteAddress(CustomerId, userid);
                 if (result)
                 {
                     nlog.LogInfo("Address Deleted Successfully");
@@ -61,7 +61,7 @@ namespace BookStoreApplication.Controllers
             }
         }
         [HttpGet]
-        [Route("GetAllAddress")]
+        [Route("GetAllCustomerDetails")]
         public ActionResult GetAllAddress()
         {
             try
@@ -81,7 +81,7 @@ namespace BookStoreApplication.Controllers
             }
         }
         [HttpPut]
-        [Route("UpdateAddress")]
+        [Route("UpdateCustomerDetails")]
         public ActionResult UpdateAddress(CustomerDetails obj)
         {
             try

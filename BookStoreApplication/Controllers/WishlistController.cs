@@ -40,14 +40,14 @@ namespace BookStoreApplication.Controllers
                 return this.NotFound(new { StatusCode = this.BadRequest(), Status = false, Message = ex.Message });
             }
         }
-        [HttpPut]
+        [HttpDelete]
         [Route("DeleteWishlist")]
         public ActionResult DeleteWishlist(int BookId)
         {
             try
             {
                 int userid = Convert.ToInt32(User.Claims.FirstOrDefault(v => v.Type == "Id").Value);
-                var result = this.wishlistBusiness.DeleteWishlist(BookId, this.userid);
+                var result = this.wishlistBusiness.DeleteWishlist( userid, BookId);
                 if (result)
                 {
                     nlog.LogInfo("Wishlist Deleted Successfully");
