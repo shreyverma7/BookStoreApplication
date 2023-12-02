@@ -1,5 +1,7 @@
 create database BookStoreApplication
 
+-----------registe table-----------------
+
 Create table UserRegister(
 UserId int primary key identity(1,1),
 FullName varchar(30),
@@ -14,11 +16,12 @@ select * from UserRegister
 
 UPDATE UserRegister
 SET IsAdmin = 'User'
-WHERE UserId = 3;
+WHERE UserId = 5;
 
 UPDATE UserRegister
 SET IsAdmin = 'Admin'
-WHERE UserId = 3;
+WHERE UserId = 4;
+
 
 
 
@@ -28,13 +31,13 @@ Select * from UserRegister
 ALTER TABLE UserRegister
 DROP COLUMN IsAdmin;
 
-create procedure spUserRegistration
+alter procedure spUserRegistration
 (
 @FullName varchar(30),
 @EmailId varchar(30),
 @Password varchar(20),
 @MobileNumber varchar(20),
-@IsAdmin bit 
+@IsAdmin varchar(20)
 )
 As
 Begin
@@ -79,7 +82,7 @@ Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 End
 
-----------------------------------------------------------------------------------------------
+---------------------------------------Book----------------------------------------
 
 Create table Book(
 BookId int primary key identity(1,1),
@@ -91,6 +94,9 @@ BookCount int,
 BookPrice int,
 Rating int,
 );
+
+INSERT INTO Book (BookName, BookDescription, BookAuthor, BookImage, BookCount, BookPrice, Rating)
+VALUES ('sample', 'SampleDescription', 'SampleAuthor', 'SampleImage.jpg', 10, 20, 5);
 
 Select * from Book
 
@@ -114,6 +120,7 @@ Begin catch
 Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 End
+
 
 create procedure spGetAllBooks
 As
@@ -193,7 +200,7 @@ Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 End
 
-------------------------------------------------------------------------------
+--------------------------------Wishlist-----------------------------------------
 
 Create table Wishlist(
     WishlistId INT PRIMARY KEY IDENTITY(1,1),
@@ -262,7 +269,7 @@ Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 end
 
---------------------------------------------------------------------------------
+--------------------------------------Cart--------------------------------------
 
 create table Cart(
     CartId INT PRIMARY KEY IDENTITY(1,1),
@@ -317,8 +324,10 @@ Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 end
 
-
-
+select * from Cart 
+insert into Cart (UserId,BookId,Count)
+values (4,2,2)
+delete from cart  where cartid = 9;
 create Procedure spDeleteCart
 (
 	@UserId int,
@@ -349,7 +358,7 @@ Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 End
 
-------------------------------------------------------------------------------
+---------------------------------WorkType-------------------------------------------
 
 Create table Type(
 TypeId INT PRIMARY KEY IDENTITY(1,1),
@@ -358,7 +367,8 @@ TypeName varchar(50)
 insert into Type values('Home');
 insert into Type values('Other');
 insert into Type values('Work');
----------------------------------------------------------------------------------
+
+----------------------------------Customer Details-----------------------------------------------
 
 Create table CustomerDetails(
 CustomerId INT PRIMARY KEY IDENTITY(1,1),
@@ -450,7 +460,7 @@ Print 'An Error occured: ' + ERROR_MESSAGE();
 End Catch
 End
 
-------------------------------------------------------------------------------------------------------
+--------------------------------------CustomerFeedback--------------------------------------------------------------
 
 Create table CustomerFeedback(
     FeedbackId INT PRIMARY KEY IDENTITY(1,1),
@@ -499,7 +509,7 @@ end
 
 Select * from CustomerFeedback
 
-----------------------------------------------------------------------------------
+-------------------------------------orderplaced-----------------------------------------
 
 Create table OrderPlaced(
     OrderId INT PRIMARY KEY IDENTITY(1,1),
@@ -530,7 +540,7 @@ end;
 
 select * from OrderPlaced
 
----------------------------------------------------------------------------------
+---------------------------order summary-------------------------------------------------
 
 Create table OrderSummary(
 SummaryId INT PRIMARY KEY IDENTITY(1,1),
